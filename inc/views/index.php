@@ -1,5 +1,5 @@
 <?php
-$tmpl->set('title', 'Self Service Alerts based on Graphite metrics');
+$tmpl->set('title', 'Alerts &middot; Tattle &middot; Charthouse');
 $tmpl->set('breadcrumbs',$breadcrumbs);
 $tmpl->place('header');
 try {

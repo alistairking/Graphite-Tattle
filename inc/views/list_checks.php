@@ -1,5 +1,5 @@
 <?php
-$tmpl->set('title', 'Self Service Alerts based on Graphite metrics');
+$tmpl->set('title', 'Threshold Checks &middot; Tattle &middot; Charthouse');
 $active_tab_alerts = " class=active";
 $tmpl->set('breadcrumbs',$breadcrumbs);
 $tmpl->place('header');
