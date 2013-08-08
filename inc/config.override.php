@@ -14,7 +14,7 @@ $GLOBALS['TATTLE_DOMAIN'] = 'http://thor.caida.org:8353/tattle';
 
 // GRAPHITE and GANGLIA Settings
 $GLOBALS['PRIMARY_SOURCE'] = 'GRAPHITE'; //Currently can be GRAPHITE or GANGLIA
-$GLOBALS['GRAPHITE_URL'] = 'http://localhost:8353';
+$GLOBALS['GRAPHITE_URL'] = 'http://thor.caida.org:8353';
 #$GLOBALS['GANGLIA_URL'] = 'http://localhost:8000/ganglia2';
 $GLOBALS['PROCESSOR_GRAPHITE_URL'] = $GLOBALS['GRAPHITE_URL'];
 
@@ -41,5 +41,5 @@ $GLOBALS['ALLOW_HTTP_AUTH'] = false;
 $GLOBALS['PAGE_SIZE'] = 15;
 
 // Locale settings
-$GLOBALS['TIMEZONE'] = 'Etc/UTC';
+$GLOBALS['TIMEZONE'] = 'UTC';
 
