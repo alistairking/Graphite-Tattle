@@ -2,10 +2,10 @@
 include 'inc/init.php';
 
 function log_action($msg) {
-  $today = date("d.m.Y");
-  $filename = $GLOBALS['PROCESSOR_LOG_PATH'] . "$today.txt";
+  $today = date("Y-m-d");
+  $filename = $GLOBALS['PROCESSOR_LOG_PATH'] . "/$today.txt";
   $fd = fopen($filename, "a");
-  $str = "[" . date("d/m/Y h:i:s", time()) . "] " . $msg;
+  $str = "[" . date("Y-m-d h:i:s", time()) . "] " . $msg;
   fwrite($fd, $str . PHP_EOL);
   fclose($fd);
 }
