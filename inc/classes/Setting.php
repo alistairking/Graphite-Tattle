@@ -1,4 +1,4 @@
-<?
+<?php
 class Setting extends fActiveRecord
 {
     protected function configure()

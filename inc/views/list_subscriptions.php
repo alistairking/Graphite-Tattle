@@ -24,16 +24,16 @@ try {
           $check = new Check($subscription->getCheckId());      
 	?>
     	<tr>
-        <td><?=$check->prepareName(); ?></td>
-        <td><?=$status_array[$subscription->prepareThreshold()]; ?></td>
-        <td><?=$subscription->prepareMethod(); ?></td>
-        <td><?=($subscription->getStatus() ? 'Disabled' : 'Enabled'); ?></td>
-        <td><a href="<?=Subscription::makeURL('edit', $subscription); ?>">Edit</a> |
-        <a href="<?=Subscription::makeURL('delete', $subscription); ?>">Delete</a></td>
+        <td><?php echo $check->prepareName(); ?></td>
+        <td><?php echo $status_array[$subscription->prepareThreshold()]; ?></td>
+        <td><?php echo $subscription->prepareMethod(); ?></td>
+        <td><?php echo ($subscription->getStatus() ? 'Disabled' : 'Enabled'); ?></td>
+        <td><a href="<?php echo Subscription::makeURL('edit', $subscription); ?>">Edit</a> |
+        <a href="<?php echo Subscription::makeURL('delete', $subscription); ?>">Delete</a></td>
         </tr>
     <?php } ?>
     </tbody></table>
-    <?
+    <?php
     //check to see if paging is needed
     $total_pages = ceil($subscriptions->count(TRUE) / $GLOBALS['PAGE_SIZE']);
     if ($total_pages > 1) {
@@ -51,18 +51,18 @@ try {
       ?>
       <div class="pagination">
         <ul class="pager">
-          <li class="<?=$prev_class; ?>">
-            <a href="<?=$prev_link; ?>">&larr; Previous</a>
+          <li class="<?php echo $prev_class; ?>">
+            <a href="<?php echo $prev_link; ?>">&larr; Previous</a>
           </li>
-          <li class="<?=$next_class; ?>">
-            <a href="<?=$next_link; ?>">Next &rarr;</a>
+          <li class="<?php echo $next_class; ?>">
+            <a href="<?php echo $next_link; ?>">Next &rarr;</a>
           </li>
         </ul>
       </div>
     <?php }
 } catch (fEmptySetException $e) {
 	?>
-	<p class="info">There are currently no Tattle check subscriptions for your account. Add a <a href="<?=Check::makeURL('list', 'threshold'); ?>">threshold</a> based or a <a href="<?=Check::makeURL('list', 'predictive'); ?>">predictive</a> based subscription now.</p>
+	<p class="info">There are currently no Tattle check subscriptions for your account. Add a <a href="<?php echo Check::makeURL('list', 'threshold'); ?>">threshold</a> based or a <a href="<?php echo Check::makeURL('list', 'predictive'); ?>">predictive</a> based subscription now.</p>
 	<?php
 }
 ?>

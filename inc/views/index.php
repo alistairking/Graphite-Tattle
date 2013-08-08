@@ -24,11 +24,11 @@ try {
           $check = new Check($row['check_id']);
 ?>
         <tr>
-        <td><?=$row['name']; ?></td>
-        <td><?=$status_array[$row['status']]; ?></td>
-        <td><?=$row['timestamp']; ?></td>
-        <td><?=$row['count']; ?></td>
-        <td><a href="<?=CheckResult::makeURL('list', $check); ?>">View</a> | <a href="<?=CheckResult::makeURL('ackAll', $check); ?>">Clear</a>
+        <td><?php echo $row['name']; ?></td>
+        <td><?php echo $status_array[$row['status']]; ?></td>
+        <td><?php echo $row['timestamp']; ?></td>
+        <td><?php echo $row['count']; ?></td>
+        <td><a href="<?php echo CheckResult::makeURL('list', $check); ?>">View</a> | <a href="<?php echo CheckResult::makeURL('ackAll', $check); ?>">Clear</a>
         </td>
         </tr>
     <?php }
@@ -50,15 +50,15 @@ try {
     </tbody></table>
     <div class="pagination">
       <ul class="pager">
-        <li class="<?=$prev_class; ?>">
-          <a href="<?=$prev_link; ?>">&larr; Previous</a>
+        <li class="<?php echo $prev_class; ?>">
+          <a href="<?php echo $prev_link; ?>">&larr; Previous</a>
         </li>
-        <li class="<?=$next_class; ?>">
-          <a href="<?=$next_link; ?>">Next &rarr;</a>
+        <li class="<?php echo $next_class; ?>">
+          <a href="<?php echo $next_link; ?>">Next &rarr;</a>
         </li>
       </ul>
     </div>
-    <? }
+    <?php }
 } catch (fNoRowsException $e) {
 ?>
         <p class="info">There are currently no Alerts based on your subscriptions. Smile, looks like everything is happy!</p>

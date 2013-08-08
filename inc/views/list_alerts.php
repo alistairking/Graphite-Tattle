@@ -21,15 +21,15 @@ try {
           $check = new Check($row['check_id']);
 		?>
     	<tr>
-        <td><?=$row['name']; ?></td>
-        <td><?=$status_array[$row['status']]; ?></td>
-        <td><?=$row['count']; ?></td>
-        <td><a href="<?=CheckResult::makeURL('list', $check); ?>">View</a>
+        <td><?php echo $row['name']; ?></td>
+        <td><?php echo $status_array[$row['status']]; ?></td>
+        <td><?php echo $row['count']; ?></td>
+        <td><a href="<?php echo CheckResult::makeURL('list', $check); ?>">View</a>
         </td>
         </tr>
     <?php } ?>
     </tbody></table></span>
-    <?
+    <?php
 } catch (fNoRowsException $e) {
 	?>
 	<p class="info">There are currently no Alerts based on your subscriptions. Smile, looks like everything is happy!</p>

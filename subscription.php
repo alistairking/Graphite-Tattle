@@ -1,4 +1,4 @@
-<?
+<?php
 include 'inc/init.php';
 
 fAuthorization::requireLoggedIn();

@@ -1,4 +1,4 @@
-<?
+<?php
 class Line extends fActiveRecord
 {
     protected function configure()

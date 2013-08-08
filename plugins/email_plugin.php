@@ -1,4 +1,4 @@
-<? 
+<?php 
 
 plugin_listener('plugin_settings','email_plugin_settings');
 plugin_listener('send_methods','email_plugin_send_methods');

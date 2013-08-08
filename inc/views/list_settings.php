@@ -18,9 +18,9 @@ try {
 	foreach ($list_plugin_settings as $setting_name => $setting) {
 		?>
     	<tr>
-        <td><?=$setting['friendly_name']; ?></td>
-        <td><?=(isset($setting['value']) ? $setting['value'] : 'Default'); ?></td>
-        <td><?=$setting['default']; ?></td>
+        <td><?php echo $setting['friendly_name']; ?></td>
+        <td><?php echo (isset($setting['value']) ? $setting['value'] : 'Default'); ?></td>
+        <td><?php echo $setting['default']; ?></td>
         <td><?php
              if (!isset($owner_id)) {
                $owner_id = NULL;
@@ -35,7 +35,7 @@ try {
         </tr>
     <?php } ?>
     </tbody></table>
-    <?
+    <?php
 } catch (fEmptySetException $e) {
 	?>
 	<p class="info">No settings? uh-oh</p>

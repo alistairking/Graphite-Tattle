@@ -1,4 +1,4 @@
-<?
+<?php
 class Dashboard extends fActiveRecord
 {
     protected function configure()

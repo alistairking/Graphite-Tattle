@@ -8,22 +8,22 @@ $tmpl->place('header');
         $affected = fMessaging::retrieve('affected', fURL::get());
   } catch (fEmptySetException $e) {
 ?>
-        <p class="info">There are currently no Tattle checks. Add a <a href="<?=Check::makeURL('add', 'threshold'); ?>">threshold</a> based or a <a href="<?=Check::makeURL('add', 'predictive'); ?>">predictive</a> based check now.</p>
+        <p class="info">There are currently no Tattle checks. Add a <a href="<?php echo Check::makeURL('add', 'threshold'); ?>">threshold</a> based or a <a href="<?php echo Check::makeURL('add', 'predictive'); ?>">predictive</a> based check now.</p>
         <?php
   } ?>
 <fieldset>
     <div style="padding-bottom:15px;">
-        <span>Name : <?=$check->prepareName(); ?></span> |
-        <span>Target : <?=Check::constructTarget($check); ?></span>
+        <span>Name : <?php echo $check->prepareName(); ?></span> |
+        <span>Target : <?php echo Check::constructTarget($check); ?></span>
     </div>
-    <span><?=Check::showGraph($check,true,'-48hours',620,true); ?></span>
+    <span><?php echo Check::showGraph($check,true,'-48hours',620,true); ?></span>
 </fieldset>
 <?php
   try {
     $check_results->tossIfEmpty();
     $affectd = fMessaging::retrieve('affected',fURL::get());
    ?>
-        <a class="btn small primary" href="<?=CheckResult::makeURL('ackAll', $check = new Check($check_id)); ?>">Clear All</a>
+        <a class="btn small primary" href="<?php echo CheckResult::makeURL('ackAll', $check = new Check($check_id)); ?>">Clear All</a>
         <table class="zebra-striped">
     <tr>
     <th>Status</th>
@@ -39,16 +39,16 @@ $tmpl->place('header');
         $check = new Check($check_result->getCheck_Id());
 ?>
         <tr>
-        <td><?=$status_array[$check_result->prepareStatus()]; ?></td>
-        <td><?=$check_result->prepareValue(); ?></td>
-        <td><?=$check->prepareError(); ?></td>
-        <td><?=$check->prepareWarn(); ?></td>
-        <td><?=$check_result->prepareState(); ?></td>
-        <td><?=$check_result->prepareTimestamp('Y-m-d H:i:s'); ?></td>
+        <td><?php echo $status_array[$check_result->prepareStatus()]; ?></td>
+        <td><?php echo $check_result->prepareValue(); ?></td>
+        <td><?php echo $check->prepareError(); ?></td>
+        <td><?php echo $check->prepareWarn(); ?></td>
+        <td><?php echo $check_result->prepareState(); ?></td>
+        <td><?php echo $check_result->prepareTimestamp('Y-m-d H:i:s'); ?></td>
         </tr>
     <?php } ?>
     </table></div>
-    <?
+    <?php
     //check to see if paging is needed
     $total_pages = ceil($check_results->count(TRUE) / $GLOBALS['PAGE_SIZE']);
     if ($total_pages > 1) {
@@ -67,11 +67,11 @@ $tmpl->place('header');
       ?>
       <div class="pagination">
         <ul class="pager">
-          <li class="<?=$prev_class; ?>">
-            <a href="<?=$prev_link; ?>">&larr; Previous</a>
+          <li class="<?php echo $prev_class; ?>">
+            <a href="<?php echo $prev_link; ?>">&larr; Previous</a>
           </li>
-          <li class="<?=$next_class; ?>">
-            <a href="<?=$next_link; ?>">Next &rarr;</a>
+          <li class="<?php echo $next_class; ?>">
+            <a href="<?php echo $next_link; ?>">Next &rarr;</a>
           </li>
         </ul>
       </div>

@@ -1,4 +1,4 @@
-<?
+<?php
 // Include main class loading config file
 define('TATTLE_ROOT', str_replace(array('ajax'),'',getcwd()));
 $web_root = dirname($_SERVER['PHP_SELF']);

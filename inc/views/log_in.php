@@ -9,7 +9,7 @@ $tmpl->place('header');
          <div class="clearfix">
            <label for="username">Username</label>
            <div class="input">
-             <input id="username" type="text" name="username" value="<?=fRequest::get('username'); ?>" />
+             <input id="username" type="text" name="username" value="<?php echo fRequest::get('username'); ?>" />
            </div>
          </div><!-- /clearfix -->
          <div class="clearfix">
@@ -20,7 +20,7 @@ $tmpl->place('header');
          </div><!-- /clearfix -->
          <div class="actions">       
            <input class="btn" type="submit" value="Log In" />
-           <a class="btn" href="<?=User::makeUrl('add'); ?>">Register</a>
+           <a class="btn" href="<?php echo User::makeUrl('add'); ?>">Register</a>
          </div>
        </fieldset>
      </div>

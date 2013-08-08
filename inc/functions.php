@@ -1,4 +1,4 @@
-<?
+<?php
 
 function subarray_median($data_array) {
   foreach ($data_array as $value) {

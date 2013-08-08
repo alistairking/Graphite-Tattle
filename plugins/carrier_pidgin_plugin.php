@@ -1,4 +1,4 @@
-<?
+<?php
 
 function carrier_pidgin_config(){
   return array('name' => 'Carrier Pidgin (example)', 'settings'=>array('Phone Number' => 'string','Carrier' => 'int'));

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?=$this->prepare('title'); ?><?=(strpos($this->get('title'), 'Tattle') === FALSE ? ' - Tattle' : ''); ?></title>
+    <title><?php echo $this->prepare('title'); ?><?php echo (strpos($this->get('title'), 'Tattle') === FALSE ? ' - Tattle' : ''); ?></title>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -12,10 +12,10 @@
        $this->place('css');
        $this->place('js');
     if ($this->get('graphlot')) { ?>
-    <script type="text/javascript" src="<?=$GLOBALS['GRAPHITE_URL']; ?>/content/js/jquery.flot.js"></script>
-    <script type="text/javascript" src="<?=$GLOBALS['GRAPHITE_URL']; ?>/content/js/jquery.autocomplete.js"></script>
-    <script type="text/javascript" src="<?=$GLOBALS['GRAPHITE_URL']; ?>/content/js/jquery.flot.selection.js"></script>
-    <script type="text/javascript" src="<?=$GLOBALS['GRAPHITE_URL']; ?>/content/js/jquery.flot.crosshair.js"></script>
+    <script type="text/javascript" src="<?php echo $GLOBALS['GRAPHITE_URL']; ?>/content/js/jquery.flot.js"></script>
+    <script type="text/javascript" src="<?php echo $GLOBALS['GRAPHITE_URL']; ?>/content/js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="<?php echo $GLOBALS['GRAPHITE_URL']; ?>/content/js/jquery.flot.selection.js"></script>
+    <script type="text/javascript" src="<?php echo $GLOBALS['GRAPHITE_URL']; ?>/content/js/jquery.flot.crosshair.js"></script>
     <script type="text/javascript">
 
     $(document).ready(function () {
@@ -82,7 +82,7 @@ if (!$this->get('full_screen')) { ?>
         <div class="container-fluid">
           <a class="brand" href="index.php">Tattle </a>
           <ul class="nav">
-            <?
+            <?php
 
               $current_url = '?'.fURL::getQueryString();
               echo '<li' . ($current_url == '' ? ' class="active"' : '') . '><a href="index.php">Alerts</a></li>'. "\n";
@@ -106,7 +106,7 @@ if (fAuthorization::checkAuthLevel('admin')) {
           </ul>
  <?php   if (is_numeric(fSession::get('user_id'))) { ?>
  <p class="pull-right">
-     Logged in as <a href="<?=User::makeUrl('edit',fSession::get('user_id'));?>"><?=fSession::get('user_name'); ?></a>
+     Logged in as <a href="<?php echo User::makeUrl('edit',fSession::get('user_id'));?>"><?php echo fSession::get('user_name'); ?></a>
 </p>
     <?php } ?>
 </div>

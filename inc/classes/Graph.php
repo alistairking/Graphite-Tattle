@@ -1,4 +1,4 @@
-<?
+<?php
 class Graph extends fActiveRecord
 {
     protected function configure()

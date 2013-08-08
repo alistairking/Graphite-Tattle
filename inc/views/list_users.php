@@ -20,22 +20,22 @@ try {
 	foreach ($users as $user) {
 		?>
     	<tr>
-        <td><?=$user->prepareUsername(); ?></td>
-        <td><?=$user->prepareEmail(); ?></td>
+        <td><?php echo $user->prepareUsername(); ?></td>
+        <td><?php echo $user->prepareEmail(); ?></td>
         <td><?php if (fSession::get('user_id') == $user->getUserId() || fAuthorization::checkAuthLevel('admin')) { 
                      echo '<a href="' . User::makeUrl('edit',$user) . '">Edit</a> | '; 
                      echo '<a href="' . Setting::makeURL('list','user',NULL,$user->getUserId()) . '">Settings</a>';
                    } ?>
        <?php if (fAuthorization::checkAuthLevel('admin') && $user->getUserId() != 1) {
-           ?> <a href="<?=User::makeUrl('delete',$user); ?>">Delete</a></td>
+           ?> <a href="<?php echo User::makeUrl('delete',$user); ?>">Delete</a></td>
        <?php } ?>
         </tr>
     <?php } ?>
     </tbody></table>
-    <?
+    <?php
 } catch (fEmptySetException $e) {
 	?>
-	<p class="info">There are currently no Tattle users? <a href="<?=User::makeUrl('add'); ?>">Add one now</a></p>
+	<p class="info">There are currently no Tattle users? <a href="<?php echo User::makeUrl('add'); ?>">Add one now</a></p>
 	<?php
 }
 ?>

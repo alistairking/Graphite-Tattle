@@ -1,4 +1,4 @@
-<?
+<?php
 class Subscription extends fActiveRecord
 {
     protected function configure()

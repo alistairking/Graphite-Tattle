@@ -6,13 +6,13 @@
   $tmpl->place('header');
 ?>
 <center> <!-- cssblasphemy but i need it look decent real quick --> 
-    <h1><?=$dashboard->getName(); ?>&nbsp<small><?=$dashboard->getDescription(); ?></small></h1>
+    <h1><?php echo $dashboard->getName(); ?>&nbsp<small><?php echo $dashboard->getDescription(); ?></small></h1>
     <div>
 	    <ul class="inline">
 	    	<?php 
 	    		foreach ($quick_times_desired as $print => $value) {
 			?>
-                <li class="inline">* <a href="<?=addOrReplaceInURL("?".fURL::getQueryString(), "from", $value)?>"><?=$print ?></a></li>
+                <li class="inline">* <a href="<?php echo addOrReplaceInURL("?".fURL::getQueryString(), "from", $value)?>"><?php echo $print ?></a></li>
 			<?php 	
 				}
 	    	?>
@@ -40,7 +40,7 @@
 		  }
         
 		?>
-        <span class=""><a href="<?=Graph::makeUrl('edit',$graph); ?>"><img src="<?=$url_graph ?>" rel=<?=($graph_count >= $columns ? 'popover-above' : 'popover-below'); ?> title="<?=$graph->getName(); ?>" data-content="<?=$graph->getDescription(); ?>" /></a></span>
+        <span class=""><a href="<?php echo Graph::makeUrl('edit',$graph); ?>"><img src="<?php echo $url_graph ?>" rel=<?php echo ($graph_count >= $columns ? 'popover-above' : 'popover-below'); ?> title="<?php echo $graph->getName(); ?>" data-content="<?php echo $graph->getDescription(); ?>" /></a></span>
     <?php 
           $graph_count++;
            if ( $graph_count == $columns) {

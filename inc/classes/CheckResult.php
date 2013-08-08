@@ -1,4 +1,4 @@
-<?
+<?php
 class CheckResult extends fActiveRecord
 {
     protected function configure()
