@@ -1,8 +1,11 @@
+<IfModule mod_php5.c>
+  php_value short_open_tag 1
+</IfModule>
 <IfModule mod_rewrite.c>
   RewriteEngine on
   # Block hidden folders
   RewriteRule "(^|/)\." - [F]
   # set this to the subdirectory of your Tattle install if its not at the root
-  #RewriteBase /graphite-tattle
+  RewriteBase /tattle
   RewriteRule ^dash dashboard.php [L]
 </IfModule>
