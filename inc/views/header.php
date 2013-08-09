@@ -77,13 +77,15 @@ if ($this->get('full_screen') && $this->get('refresh') > 0) {
 
 <?php
 if (!$this->get('full_screen')) { ?>
-   <div class="topbar">
-      <div class="topbar-inner">
-        <div class="container-fluid">
+   <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
           <a class="brand" href="index.php">Tattle </a>
           <ul class="nav">
-            <?php
-
+	   <li class="dropdown active">
+	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tattle<b class="caret"></b></a>
+	    <ul class="dropdown-menu">
+             <?php
               $current_url = '?'.fURL::getQueryString();
               echo '<li' . ($current_url == '' ? ' class="active"' : '') . '><a href="index.php">Alerts</a></li>'. "\n";
               $threshold_check_list = Check::makeURL('list', 'threshold');
@@ -103,9 +105,11 @@ if (fAuthorization::checkAuthLevel('admin')) {
               echo '<li><a href="' . User::makeURL('list') . '" >Users</a></li>';
 }
 ?>
-          </ul>
+            </ul>
+	   </li>   
+	  </ul> 
  <?php   if (is_numeric(fSession::get('user_id'))) { ?>
- <p class="pull-right">
+ <p class="navbar-text pull-right">
      Logged in as <a href="<?php echo User::makeUrl('edit',fSession::get('user_id'));?>"><?php echo fSession::get('user_name'); ?></a>
 </p>
     <?php } ?>
@@ -113,7 +117,7 @@ if (fAuthorization::checkAuthLevel('admin')) {
         </div>
       </div>
 <?php } ?>
-<div class="container-fluid">
+<div class="container">
 <?php
     $breadcrumbs = $this->get('breadcrumbs');
     if (is_array($breadcrumbs)) {

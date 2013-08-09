@@ -1,4 +1,4 @@
-        <div class="container-fluid">
+        <div class="container">
           <footer>
             <?php if (fAuthorization::checkLoggedIn()) { ?>
             <p><a href="login.php?action=log_out">Log Out</a></p>
