@@ -120,11 +120,15 @@ class Check extends fActiveRecord
     /**
      * Requests Graphite Data for check
      *
-     * @param  Check $obj   The Check object to get the graphite data for
+     * @param  Check $obj      The Check object to get the graphite data for
      * @return array either a Graphite json_data array or an empty one
      */
     static public function getData($obj=NULL)
     {
+      // AK modifies to allow a fixed offset into the past
+      // this is because we do not have up-to-the-minute data
+      // in our graphite instance, so we pretend it is 2hrs ago
+      $simulated_now = (time() - ($obj->prepareOffset()*60));
       if($obj->getType() == 'threshold') {
         if ( $GLOBALS['PRIMARY_SOURCE'] == "GANGLIA" ) {
           $check_url = $GLOBALS['GANGLIA_URL'] . '/graph.php/?' .
@@ -135,11 +139,16 @@ class Check extends fActiveRecord
 	  $target = Check::constructTarget($obj);
           $target = str_replace("&quot;","\"",$target);
           $target = urlencode($target);
+	  $from_time = $simulated_now - ($obj->prepareSample() * 60); 
+	  $until_time = $simulated_now;
+	  fCore::debug("time: ".time().", offset: ".$obj->prepareOffset().", simulated_now: $simulated_now\n");
           $check_url = $GLOBALS['PROCESSOR_GRAPHITE_URL'] . '/render/?' .
             'target=' . $target .
-            '&from=-'. $obj->prepareSample() . 'minutes' .
+            '&from=' . $from_time .
+            '&until=' . $until_time .
             '&format=json';
         }
+	fCore::debug("check_url: $check_url\n");
         $json_data = @file_get_contents($check_url);
         if ($json_data) {
           $data = json_decode($json_data);
@@ -166,13 +175,13 @@ class Check extends fActiveRecord
             $regression_size = self::MINUTES_PER_MONTH * $i;
           }
 
-          $from = $regression_size + $obj->getSample();
-          $until = $regression_size;
+          $from = $simulated_now - (($regression_size + $obj->getSample()) * 60);
+          $until = $simulated_now - ($regression_size * 60);
 
           $check_url = $GLOBALS['PROCESSOR_GRAPHITE_URL'] . '/render/?' .
             'target=' . $obj->prepareTarget() .
-            '&from=-' . $from . 'minutes' .
-            '&until=-' . $until . 'minutes' .
+            '&from=' . $from .
+            '&until=' . $until .
             '&format=json';
 
           $json_data = @file_get_contents($check_url);
@@ -351,13 +360,16 @@ class Check extends fActiveRecord
 
       } else {
 
+        $simulated_now = (time() - ($obj->prepareOffset()*60));
         $link .=  $GLOBALS['GRAPHITE_URL'] . '/render/?';
         $link .= 'target=legendValue(alias(' . Check::constructTarget($obj) . '%2C%22Check : ' . $obj->prepareName() .'%22),%22last%22)';
         if ($sample !== False) {
-          $link .= '&from=' . $sample;
+	  $from = $simulated_now - ($sample * 60);
         } else {
-          $link .= '&from=-' . $obj->prepareSample() . 'minutes';
+	  $from = $simulated_now - ($obj->prepareSample() * 60);
         }
+        $link .= '&from=' . $from;
+        $link .= '&until=' . $simulated_now;
         if ($width !== false) {
           $link .= '&width=' .$width;
         } else {

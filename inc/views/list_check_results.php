@@ -16,7 +16,7 @@ $tmpl->place('header');
         <span>Name : <?php echo $check->prepareName(); ?></span> |
         <span>Target : <?php echo Check::constructTarget($check); ?></span>
     </div>
-    <span><?php echo Check::showGraph($check,true,'-48hours',620,true); ?></span>
+    <span><?php echo Check::showGraph($check,true,180,620,true); ?></span>
 </fieldset>
 <?php
   try {

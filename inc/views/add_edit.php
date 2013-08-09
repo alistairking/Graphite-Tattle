@@ -39,7 +39,13 @@ $tmpl->place('header');
          <fieldset class="startCollapsed">
             <legend>Advanced</legend>
             <div class="clearfix">
-              <label class="masterTooltip" title="Number of data points to use when calculating the moving average. Each data point spans one minute" for="check-sample">Sample Size in Minutes<em>*</em></label>
+              <label class="masterTooltip" title="Number of minutes to shift the 'NOW' time back by. For example, if your Graphite data has 20 minute latency, set this to 20" for="check-offset">Offset in Minutes<em>*</em></label>
+              <div class="input">
+                <input id="check-warn" class="span3" type="text" name="offset" value="<?php echo $check->encodeOffset(); ?>" />
+              </div>
+            </div><!-- /clearfix -->
+            <div class="clearfix">
+              <label class="masterTooltip" title="Number of data points to use when calculating the moving average. Each data point spans one minute" for="check-sample">Sample size in Minutes<em>*</em></label>
               <div class="input">
                 <input id="check-warn" class="span3" type="text" name="sample" value="<?php echo $check->encodeSample(); ?>" />
               </div>
@@ -57,7 +63,7 @@ $tmpl->place('header');
               </div>
             </div><!-- /clearfix -->
             <div class="clearfix">
-             <label class="masterTooltip" title="Public checks can be subscribed to by any user while private checks remain hidden from other users" for="check-visibility">Visibility<em>*</em></label>
+             <label class="masterTooltip" title="Public checks can be subscribed to by any user while private checks remain hidden from other users" for="check-visibility">Visibility<em>*</em></label>
              <div class="input">
                <select name="visibility" class="span3">
                <?php
@@ -104,7 +110,7 @@ $tmpl->place('header');
             <select id="graphiteDateRange" class="span3">
               <?php $dateRange = array('-12hours'   => '12 Hours', '-1days' => '1 Day', '-3days' => '3 Days', '-7days' => '7 Days', '-14days' => '14 Days', '-30days' => '30 Days', '-60days' => '60 Days');
                 foreach ($dateRange as $value => $text) {
-                  fHTML::printOption($text, $value, '-3days');
+                  fHTML::printOption($text, $value, '-12hours');
                 }
               ?>
             </select>
